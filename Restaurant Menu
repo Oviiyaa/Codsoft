@@ -1,0 +1,33 @@
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
+from kivy.uix.button import Button
+
+class MenuScreen(BoxLayout):
+    def __init__(self, **kwargs):
+        super(MenuScreen, self).__init__(**kwargs)
+        self.orientation = 'vertical'
+        self.padding = 20
+        self.spacing = 10
+
+        self.add_widget(Label(text='Restaurant Menu', font_size=32, color=(0, 0, 0, 1)))
+
+        # Example menu items
+        menu_items = [
+            {'name': 'Margherita Pizza', 'price': '$12'},
+            {'name': 'Spaghetti Carbonara', 'price': '$15'},
+            {'name': 'Tiramisu', 'price': '$8'}
+        ]
+
+        for item in menu_items:
+            self.add_widget(Label(text=f"{item['name']} - {item['price']}", font_size=24))
+
+        self.order_button = Button(text='Order Now', font_size=24, background_color=(0, 0.5, 0.5, 1))
+        self.add_widget(self.order_button)
+
+class MenuApp(App):
+    def build(self):
+        return MenuScreen()
+
+if __name__ == '__main__':
+    MenuApp().run()
